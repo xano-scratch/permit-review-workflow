@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "objects": {
+    "app:applications": {
+      "guid": "5a7079950ffbce3d265e8097edc5db7c",
+      "canonical": "permit_apps",
+      "canonical_source": "code"
+    },
+    "app:auth": {
+      "guid": "4fe67f5a2d319eaaca7996700f27edd8",
+      "canonical": "permit_auth",
+      "canonical_source": "code"
+    },
+    "app:catalog": {
+      "guid": "9c633fe4507b60d8a38911049a8fc430",
+      "canonical": "permit_catalog",
+      "canonical_source": "code"
+    },
+    "app:review": {
+      "guid": "8fa2f6f1328bf7f07abf721c85c4e082",
+      "canonical": "permit_review",
+      "canonical_source": "code"
+    },
+    "app:seed": {
+      "guid": "7110fabc369b25f0581044e47d499906",
+      "canonical": "permit_seed",
+      "canonical_source": "code"
+    },
+    "dbo:eligibility_rules": {
+      "guid": "83c8b0612403007ffd5eb0dc0ec7347f"
+    },
+    "dbo:permit_applications": {
+      "guid": "8ce06624a1c6d627561be213666a7e7f"
+    },
+    "dbo:permit_types": {
+      "guid": "8d4b26a402a17824c3832050fe89931b"
+    },
+    "dbo:review_actions": {
+      "guid": "249d3f262beac1419df2102dcccfaa84"
+    },
+    "dbo:users": {
+      "guid": "157d4a98d979cf04b9ccdb98dfc15229"
+    },
+    "function:evaluate_application": {
+      "guid": "20a56a28d5ecd65778238408fcc59001"
+    },
+    "query:applications|GET|get/{application_id}": {
+      "guid": "ed9f5ee4e0b0fa5b7823bb2fcb2d6575"
+    },
+    "query:applications|GET|mine": {
+      "guid": "30dab871b1a71611a15a2d39b4b30d91"
+    },
+    "query:applications|POST|save": {
+      "guid": "cca35e34073a7311a42dd020c85ae8ac"
+    },
+    "query:applications|POST|submit": {
+      "guid": "222ae807338d8a3cb2d2346a968f38b0"
+    },
+    "query:auth|GET|me": {
+      "guid": "bfd70d24f92356209c72088852ec320e"
+    },
+    "query:auth|POST|login": {
+      "guid": "d39d74f907baeb484e9c93358362998a"
+    },
+    "query:auth|POST|signup": {
+      "guid": "89d6bc5d06c58cc80bb611a9fc64b12c"
+    },
+    "query:catalog|GET|permit-types": {
+      "guid": "cb33aa9462f3df9a886da630440eb887"
+    },
+    "query:review|GET|queue": {
+      "guid": "efaa484e5b578d5920b168cdd80d8021"
+    },
+    "query:review|POST|decide": {
+      "guid": "5108e478647374175ae313ed2bc91c90"
+    },
+    "query:review|POST|run-checks": {
+      "guid": "1e8c2277b1a30461db7c13f3e17d0e46"
+    },
+    "query:seed|POST|run": {
+      "guid": "648d04bea4597ffab24de8eee9eb3bd2"
+    }
+  }
+}

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Permit Review Workflow · Xano template</title>
+    <meta
+      name="description"
+      content="The governed backend under a public permit intake tool. Completeness, versioned eligibility rules, and API-layer RBAC in one Xano API layer."
+    />
+    <style>
+      :root {
+        --bg: #0a0a0b;
+        --panel: #141417;
+        --panel-2: #1b1b1f;
+        --border: #26262b;
+        --text: #f4f4f5;
+        --muted: #a1a1aa;
+        --primary: #6366f1;
+        --primary-ink: #ffffff;
+        --green: #34d399;
+        --red: #f87171;
+        --amber: #fbbf24;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; }
+      .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+      .hero {
+        padding: 72px 0 40px;
+        border-bottom: 1px solid var(--border);
+        background: radial-gradient(1200px 400px at 50% -10%, rgba(99, 102, 241, 0.14), transparent);
+      }
+      .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+      .badge {
+        font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+        padding: 4px 10px; border-radius: 999px;
+        border: 1px solid var(--border); background: var(--panel); color: var(--muted);
+      }
+      .badge.play { color: #c7d2fe; border-color: rgba(99, 102, 241, 0.4); background: rgba(99, 102, 241, 0.12); }
+      h1 { font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 12px; }
+      .tagline { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0 0 16px; }
+      .meta { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; margin-bottom: 24px; }
+      .meta strong { color: var(--text); }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-size: 15px; font-weight: 600; text-decoration: none;
+        padding: 11px 20px; border-radius: 10px; border: 1px solid transparent;
+        transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
+      }
+      .btn:active { transform: translateY(1px); }
+      .btn.primary { background: var(--primary); color: var(--primary-ink); }
+      .btn.primary:hover { background: #4f46e5; }
+      .btn.ghost { background: transparent; color: var(--text); border-color: var(--border); }
+      .btn.ghost:hover { border-color: #3f3f46; background: var(--panel); }
+      section { padding: 44px 0; border-bottom: 1px solid var(--border); }
+      h2 { font-size: 24px; letter-spacing: -0.01em; margin: 0 0 8px; }
+      .lead { color: var(--muted); margin: 0 0 24px; max-width: 680px; }
+      .shot {
+        width: 100%; border-radius: 14px; border: 1px solid var(--border);
+        display: block; margin-top: 8px; box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      }
+      .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+      .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+      .card h3 { margin: 0 0 6px; font-size: 16px; }
+      .card p { margin: 0; color: var(--muted); font-size: 14px; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { color: var(--muted); font-weight: 600; }
+      td code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+      .verb { font-family: ui-monospace, monospace; font-size: 12px; font-weight: 700; color: #c7d2fe; }
+      pre {
+        background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px;
+        padding: 16px 18px; overflow-x: auto; font-size: 13px; line-height: 1.7;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #e4e4e7;
+      }
+      .note { font-size: 13px; color: var(--muted); background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+      footer { padding: 32px 0 56px; color: var(--muted); font-size: 13px; }
+      ul.checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+      ul.checks li { padding-left: 26px; position: relative; color: var(--muted); }
+      ul.checks li strong { color: var(--text); }
+      ul.checks li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <div class="badges">
+          <span class="badge play">Play 3 · Pilot to Production</span>
+          <span class="badge">Government</span>
+          <span class="badge">API-layer RBAC + audit</span>
+        </div>
+        <h1>Permit Review Workflow</h1>
+        <p class="tagline">
+          The governed backend under a public permit intake tool. Completeness, versioned
+          eligibility rules, and review routing all live in one Xano API layer, so a fast-built
+          government frontend stays production safe.
+        </p>
+        <p class="meta"><strong>5</strong> tables · <strong>12</strong> APIs · <strong>1</strong> shared function · TypeScript + React</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/xano-scratch/permit-review-workflow">View on GitHub</a>
+          <a class="btn ghost" href="#use">Use this template</a>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap">
+        <h2>What a reviewer sees</h2>
+        <p class="lead">
+          The eligibility results show the exact rule and version that fired. Approve is blocked
+          while any active rule fails, and the block names the rule. The same engine that shows
+          these results is the code that gates the decision.
+        </p>
+        <img class="shot" src="screenshot.png" alt="The reviewer view of a food vendor permit: two of three rules pass, the location zone rule fails, and the Approve button is blocked with a note naming the failing rule." />
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Why it matters</h2>
+        <p class="lead">
+          An AI frontend builder makes a permit form in minutes. The risk is that the form, not a
+          governed backend, becomes the rulebook. This template moves the rules into one versioned
+          API layer a technical evaluator can read and trust.
+        </p>
+        <ul class="checks">
+          <li><strong>Completeness is checked at the API.</strong> An incomplete submission is refused and the missing fields are named. The UI cannot skip it.</li>
+          <li><strong>Eligibility rules are versioned.</strong> A retired rule stays in the table, so a past decision shows which version fired.</li>
+          <li><strong>One engine gates the decision.</strong> The reviewer's checks and the approve gate call the same function.</li>
+          <li><strong>RBAC is enforced in the endpoint.</strong> An applicant forcing the queue or a decision call gets a 403, not a hidden button. This is not row-level security.</li>
+          <li><strong>Every step is audited.</strong> Submit, run checks, request changes, approve, and deny are all appended to an audit trail.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>API surface</h2>
+        <p class="lead">Twelve endpoints across five groups. Each one enforces a rule.</p>
+        <table>
+          <thead><tr><th>Method</th><th>Path</th><th>What it enforces</th></tr></thead>
+          <tbody>
+            <tr><td class="verb">POST</td><td><code>/api:permit_auth/signup</code></td><td>Self-serve registration. Role is forced to applicant.</td></tr>
+            <tr><td class="verb">POST</td><td><code>/api:permit_auth/login</code></td><td>Verify credentials, mint a token.</td></tr>
+            <tr><td class="verb">GET</td><td><code>/api:permit_auth/me</code></td><td>The current user and role.</td></tr>
+            <tr><td class="verb">GET</td><td><code>/api:permit_catalog/permit-types</code></td><td>Active permit types and their required fields.</td></tr>
+            <tr><td class="verb">POST</td><td><code>/api:permit_apps/save</code></td><td>Create or update a draft. Own-record and active-type guards.</td></tr>
+            <tr><td class="verb">POST</td><td><code>/api:permit_apps/submit</code></td><td>Completeness check. Blocks and names the missing fields.</td></tr>
+            <tr><td class="verb">GET</td><td><code>/api:permit_apps/mine</code></td><td>The caller's own applications.</td></tr>
+            <tr><td class="verb">GET</td><td><code>/api:permit_apps/get/{id}</code></td><td>One application with rules and the full trail. Applicant sees only their own.</td></tr>
+            <tr><td class="verb">POST</td><td><code>/api:permit_review/run-checks</code></td><td>Reviewer or admin. Evaluate active rules, record results, move to under review.</td></tr>
+            <tr><td class="verb">POST</td><td><code>/api:permit_review/decide</code></td><td>Reviewer or admin. Approve is refused while any active rule fails.</td></tr>
+            <tr><td class="verb">GET</td><td><code>/api:permit_review/queue</code></td><td>Reviewer or admin. Applications by status.</td></tr>
+            <tr><td class="verb">POST</td><td><code>/api:permit_seed/run</code></td><td>Idempotent demo seed.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Frontend screens</h2>
+        <div class="grid">
+          <div class="card"><h3>Sign in</h3><p>Pick a seeded account or register as an applicant, then load the demo data with one click.</p></div>
+          <div class="card"><h3>Apply</h3><p>Choose a permit type and fill the required fields. An incomplete submit shows exactly what is missing.</p></div>
+          <div class="card"><h3>My applications</h3><p>The applicant's own list with status and requested changes.</p></div>
+          <div class="card"><h3>Review queue</h3><p>Filtered by status, reviewer only. The API rejects it for an applicant no matter what the UI renders.</p></div>
+          <div class="card"><h3>Application detail</h3><p>The answers, the eligibility results with the rule key and version, the audit trail, and the review actions.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="use">
+      <div class="wrap">
+        <h2>Use this template</h2>
+        <p class="lead">
+          Clone it and deploy to your own Xano account in about a minute. You need a free Xano
+          account for the one-time login.
+        </p>
+        <pre>git clone https://github.com/xano-scratch/permit-review-workflow.git
+cd permit-review-workflow
+npm install
+npx xanots login
+npm run xano:deploy</pre>
+        <p class="lead" style="margin-top: 24px;">Or hand this prompt to your coding agent:</p>
+        <pre>Clone https://github.com/xano-scratch/permit-review-workflow and deploy it
+to my Xano account: run npm install, then npx xanots login, then
+npm run xano:deploy. Then help me adapt the permit types and the
+versioned eligibility rules in xano/ to my own program.</pre>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Live preview</h2>
+        <p class="note">
+          The build's live environment is an ephemeral Xano tenant and may have expired. The
+          durable artifact is this repo. Anyone can redeploy it with <span class="mono">npm run
+          xano:deploy</span> for fresh links, seeded and ready.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        Built with Xano and the xanots TypeScript SDK. MIT licensed. A public proof artifact, not a
+        live production reference.
+      </div>
+    </footer>
+  </body>
+</html>
